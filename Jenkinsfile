@@ -1,18 +1,19 @@
-pipeline{
+pipeline {
     agent any
-    stages{
-        stage("clone"){
-            steps{
-            retry(3){
-               bat "git clone https://github.com/jyotiprakash-m/multi-ticket-booking.git"
-               }
+
+    stages {
+        stage('Build') {
+            steps {
+                // Get some code from a GitHub repository
+                git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+
             }
         }
-        
-         stage("packaging + docker image"){
-            steps{
-            bat "mvn clean package -DskipTests"
+        stage('Docker Image') {
+            steps {
+                // To run Maven on a Windows agent, use
+                bat "mvn clean package -DskipTests"
             }
         }
-        }
+    }
 }
