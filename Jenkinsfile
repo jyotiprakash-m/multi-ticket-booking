@@ -5,7 +5,10 @@ pipeline {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/jglick/simple-maven-project-with-tests.git'
+              
+                retry(3){
+		               bat "git clone https://github.com/jglick/simple-maven-project-with-tests.git"
+		            }
 
             }
         }
