@@ -15,9 +15,16 @@ public class FallbackRestController {
 	Logger logger = LoggerFactory.getLogger(FallbackRestController.class);
 
 	@GetMapping("/userServiceFallback")
-	public ResponseEntity<Message> diagnosticServiceFallback() {
+	public ResponseEntity<Message> userServiceFallback() {
 		logger.error("User service is down");
 		message.setMessage("User service is down");
+		message.setState(false);
+		return new ResponseEntity<>(message, HttpStatus.SERVICE_UNAVAILABLE);
+	}
+	@GetMapping("/busServiceFallback")
+	public ResponseEntity<Message> busServiceFallback() {
+		logger.error("Bus service is down");
+		message.setMessage("Bus service is down");
 		message.setState(false);
 		return new ResponseEntity<>(message, HttpStatus.SERVICE_UNAVAILABLE);
 	}

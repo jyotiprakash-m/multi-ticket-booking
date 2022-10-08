@@ -14,5 +14,7 @@
   <modules>
   	<module>euraka-server</module>
   	<module>api-gateway-service</module>
+  	<module>user-service</module>
+  	<module>bus-service</module>
   </modules>
 </project>
